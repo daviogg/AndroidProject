@@ -31,7 +31,6 @@ abstract class SchoolDatabase : RoomDatabase() {
         private fun buildDatabase(context: Context) = databaseBuilder(
             context,
             SchoolDatabase::class.java, "school.db"
-        )
-            .build()
+        ).build()
     }
 }
