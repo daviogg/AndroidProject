@@ -17,4 +17,6 @@ interface SchoolDao {
 
     @Query("SELECT * FROM Exam")
     fun getAllExams(): List<Exam>
+
+    
 }

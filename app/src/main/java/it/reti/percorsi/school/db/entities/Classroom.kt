@@ -8,4 +8,5 @@ import androidx.room.PrimaryKey
 data class Classroom (
     @PrimaryKey val uid: Int,
     @ColumnInfo(name = "name") val name: String,
-    @ColumnInfo(name = "students") val students: List<Student>)
+    @ColumnInfo(name = "students") val students: List<Student>,
+    @ColumnInfo(name = "type") val type: ClassroomType)
