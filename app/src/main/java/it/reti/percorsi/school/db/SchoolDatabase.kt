@@ -20,17 +20,25 @@ abstract class SchoolDatabase : RoomDatabase() {
     abstract fun schoolDao(): SchoolDao
 
     companion object {
+
+
         @Volatile
-        private var instance: SchoolDatabase? = null
-        private val LOCK = Any()
+        private var INSTANCE: SchoolDatabase? = null
 
-        operator fun invoke(context: Context) = instance ?: synchronized(LOCK) {
-            instance ?: buildDatabase(context).also { instance = it }
+        fun getDatabase(context: Context): SchoolDatabase {
+            val tempInstance = INSTANCE
+            if (tempInstance != null) {
+                return tempInstance
+            }
+            synchronized(this) {
+                val instance = databaseBuilder(
+                    context.applicationContext,
+                    SchoolDatabase::class.java,
+                    "school_database"
+                ).build()
+                INSTANCE = instance
+                return instance
+            }
         }
-
-        private fun buildDatabase(context: Context) = databaseBuilder(
-            context,
-            SchoolDatabase::class.java, "school.db"
-        ).build()
     }
 }

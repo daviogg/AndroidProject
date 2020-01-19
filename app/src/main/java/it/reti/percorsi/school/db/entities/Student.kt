@@ -4,6 +4,7 @@ import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import it.reti.percorsi.school.db.entities.Exam
+import java.util.*
 
 @Entity
 data class Student (
