@@ -9,4 +9,5 @@
     <string name="classroom_type_literature">Literature</string>
     <string name="classroom_type_mathematics">Mathematics</string>
     <string name="classroom_type_astronomy">Astronomy</string>
+    <string name="title_classroom_list">Lista classi</string>
 </resources>

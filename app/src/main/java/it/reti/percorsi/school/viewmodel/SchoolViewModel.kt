@@ -15,6 +15,6 @@ class SchoolViewModel(application: Application):AndroidViewModel(application) {
     init {
         val schoolDao = SchoolDatabase.getDatabase(application).schoolDao()
         schoolRepository = SchoolRepository(schoolDao)
-        allClassrooms = schoolRepository.allClassrooms
+        allClassrooms = schoolRepository.getAllClassrooms()
     }
 }

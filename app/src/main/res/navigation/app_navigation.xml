@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/app_navigation"
+    app:startDestination="@+id/fragment_classroom_list_recycler">
+
+    <fragment
+        android:id="@+id/fragment_classroom_list_recycler"
+        android:name="it.reti.percorsi.school.ui.ClassroomList.ClassroomsListFragment"
+        android:label="@string/title_classroom_list"
+        tools:layout="@layout/list_classroom_fragment">
+    </fragment>
+</navigation>

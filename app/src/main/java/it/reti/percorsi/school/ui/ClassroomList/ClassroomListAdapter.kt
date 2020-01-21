@@ -14,10 +14,10 @@ class ClassroomListAdapter internal constructor(
 ) : RecyclerView.Adapter<ClassroomListAdapter.ClassroomViewholder>() {
 
     private val inflater: LayoutInflater = LayoutInflater.from(context)
-    private var classrooms = emptyList<Classroom>() // Cached copy of words
+    private var classrooms = emptyList<Classroom>()
 
     inner class ClassroomViewholder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        val wordItemView: TextView = itemView.findViewById(R.id.class_name)
+        val classroomItemView: TextView = itemView.findViewById(R.id.class_name)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ClassroomViewholder {
@@ -27,7 +27,7 @@ class ClassroomListAdapter internal constructor(
 
     override fun onBindViewHolder(holder: ClassroomViewholder, position: Int) {
         val current = classrooms[position]
-        holder.wordItemView.text = current.name
+        holder.classroomItemView.text = current.name
     }
 
     override fun getItemCount() = classrooms.size
