@@ -19,12 +19,12 @@ import java.util.concurrent.Executors
 class ClassroomsListViewModel(application: Activity) : ViewModel() {
     private val schoolRepository: SchoolRepository
     public val allClassrooms : LiveData<List<Classroom>>
-    var schoolDao : SchoolDao
+    var schoolDatabase : SchoolDatabase
 
     init {
-        schoolDao = SchoolDatabase.buildDatabase(application).schoolDao()
-        schoolRepository = SchoolRepository(schoolDao)
-        populateDatabaseIfNull(schoolDao)
+        schoolDatabase = SchoolDatabase.buildDatabase(application)
+        schoolRepository = SchoolRepository(schoolDatabase)
+        populateDatabaseIfNull()
         allClassrooms = schoolRepository.getAllClassrooms()
     }
 
@@ -32,24 +32,21 @@ class ClassroomsListViewModel(application: Activity) : ViewModel() {
         return schoolRepository.getAllClassrooms()
     }
 
-    fun populateDatabaseIfNull(schoolDao: SchoolDao){
-
-        Executors.newSingleThreadExecutor().execute {
+    fun populateDatabaseIfNull(){
             SchoolDatabase?.let {
-                schoolDao
+                schoolRepository
                     .insertStudents(PopulateDb.generateStudentsClassA())
-                schoolDao
+                schoolRepository
                     .insertStudents(PopulateDb.generateStudentsClassB())
-                schoolDao
+                schoolRepository
                     .insertStudents(PopulateDb.generateStudentsClassC())
-                schoolDao
+                schoolRepository
                     .insertStudents(PopulateDb.generateStudentsClassD())
-                schoolDao
+                schoolRepository
                     .insertStudents(PopulateDb.generateStudentsClassE())
-                schoolDao
+                schoolRepository
                     .insertClassrooms(PopulateDb.generateClassrooms())
             }
-        }
     }
 
 

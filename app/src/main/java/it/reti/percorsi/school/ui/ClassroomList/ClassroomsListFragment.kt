@@ -36,7 +36,6 @@ class ClassroomsListFragment : Fragment() {
         ).get(ClassroomsListViewModel::class.java)
 
         rootView.findViewById<AppCompatImageButton>(R.id.products_search_btn).setOnClickListener {
-            /*viewModel.populateDatabaseIfNull(viewModel.schoolDao)*/
             viewModel.getLocalClassrooms().observe(this, Observer {list ->
                 fragment_classroom_list_recycler.apply {
                     adapter = ClassroomListAdapter(this@ClassroomsListFragment.context!!, list)
