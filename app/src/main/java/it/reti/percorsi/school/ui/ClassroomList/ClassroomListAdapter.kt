@@ -1,6 +1,7 @@
 package it.reti.percorsi.school.ui.ClassroomList
 
 import android.content.Context
+import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,6 +10,8 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import it.reti.percorsi.school.R
 import it.reti.percorsi.school.db.entities.Classroom
+import it.reti.percorsi.school.db.entities.ClassroomType
+import kotlin.coroutines.coroutineContext
 
 class ClassroomListAdapter internal constructor(
     context: Context,
@@ -39,7 +42,19 @@ class ClassroomListAdapter internal constructor(
         holder.classroomItemName.text = current.name
         holder.classroomItemNumberOfStudents.text = current.studentIds.size.toString()
         holder.classroomItemDescription.text = current.section
+
+        when(current.type) {
+            ClassroomType.MATHEMATICS -> holder.classroomItemImage.setImageResource(R.drawable.ic_calculator)
+            ClassroomType.ASTRONOMY -> holder.classroomItemImage.setImageResource(R.drawable.ic_telescope)
+            ClassroomType.LITERATURE -> holder.classroomItemImage.setImageResource(R.drawable.ic_books)
+            ClassroomType.SCIENCE -> holder.classroomItemImage.setImageResource(R.drawable.ic_atom)
+            ClassroomType.ART -> holder.classroomItemImage.setImageResource(R.drawable.ic_brush)
+        }
+
+
+
     }
+
 
     override fun getItemCount() = classrooms.size
 }
