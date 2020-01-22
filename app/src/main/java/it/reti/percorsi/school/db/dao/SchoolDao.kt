@@ -18,9 +18,6 @@ interface SchoolDao {
     @Query("SELECT * FROM Classroom")
     fun getAllClassrooms(): LiveData<List<Classroom>>
 
-/*    @Query("SELECT * FROM Exam")
-    fun getAllExams(): List<Exam>*/
-
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun insertClassrooms(classrooms :  List<Classroom>) : Completable
 

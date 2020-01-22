@@ -3,25 +3,53 @@ package it.reti.percorsi.school.ui.ClassroomList
 import android.app.Activity
 import android.app.Application
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import androidx.recyclerview.widget.LinearLayoutManager
 import io.reactivex.subscribers.DisposableSubscriber
+import it.reti.percorsi.school.db.PopulateDb
 import it.reti.percorsi.school.db.SchoolDatabase
+import it.reti.percorsi.school.db.dao.SchoolDao
 import it.reti.percorsi.school.db.entities.Classroom
 import it.reti.percorsi.school.db.repository.SchoolRepository
+import kotlinx.android.synthetic.main.list_classroom_fragment.*
+import java.util.concurrent.Executors
 
 class ClassroomsListViewModel(application: Activity) : ViewModel() {
     private val schoolRepository: SchoolRepository
     public val allClassrooms : LiveData<List<Classroom>>
+    var schoolDao : SchoolDao
 
     init {
-        val schoolDao = SchoolDatabase.getDatabase(application).schoolDao()
+        schoolDao = SchoolDatabase.buildDatabase(application).schoolDao()
         schoolRepository = SchoolRepository(schoolDao)
+        populateDatabaseIfNull(schoolDao)
         allClassrooms = schoolRepository.getAllClassrooms()
     }
 
-    fun getLocalClassrooms() {
-        schoolRepository.getAllClassrooms()
+    fun getLocalClassrooms(): LiveData<List<Classroom>> {
+        return schoolRepository.getAllClassrooms()
+    }
+
+    fun populateDatabaseIfNull(schoolDao: SchoolDao){
+
+        Executors.newSingleThreadExecutor().execute {
+            SchoolDatabase?.let {
+                schoolDao
+                    .insertStudents(PopulateDb.generateStudentsClassA())
+                schoolDao
+                    .insertStudents(PopulateDb.generateStudentsClassB())
+                schoolDao
+                    .insertStudents(PopulateDb.generateStudentsClassC())
+                schoolDao
+                    .insertStudents(PopulateDb.generateStudentsClassD())
+                schoolDao
+                    .insertStudents(PopulateDb.generateStudentsClassE())
+                schoolDao
+                    .insertClassrooms(PopulateDb.generateClassrooms())
+            }
+        }
     }
 
 

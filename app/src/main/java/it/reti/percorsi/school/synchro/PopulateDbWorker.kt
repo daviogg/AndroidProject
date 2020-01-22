@@ -11,7 +11,7 @@ class PopulateDbWorker(appContext: Context, workerParams: WorkerParameters)
 
     override fun doWork(): Result {
 
-        val db : SchoolDatabase = SchoolDatabase.getDatabase(applicationContext)
+        val db : SchoolDatabase = SchoolDatabase.buildDatabase(applicationContext)
         db.schoolDao().insertClassrooms(PopulateDb.generateClassrooms())
         return Result.success()
     }

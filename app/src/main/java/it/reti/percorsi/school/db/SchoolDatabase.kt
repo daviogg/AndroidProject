@@ -17,6 +17,7 @@ import it.reti.percorsi.school.db.converter.ClassroomConverter
 import it.reti.percorsi.school.db.dao.SchoolDao
 import it.reti.percorsi.school.db.entities.Classroom
 import it.reti.percorsi.school.db.entities.Student
+import java.util.concurrent.Executors
 
 @Database(entities = [Classroom::class, Student::class], version = 1)
 @TypeConverters(ClassroomConverter::class)
@@ -30,7 +31,12 @@ abstract class SchoolDatabase : RoomDatabase() {
         @Volatile
         private var INSTANCE: SchoolDatabase? = null
 
-        fun getDatabase(context: Context): SchoolDatabase {
+        fun getInstance(context: Context): SchoolDatabase =
+            INSTANCE ?: synchronized(this) {
+                INSTANCE ?: buildDatabase(context).also { INSTANCE = it }
+            }
+
+        fun buildDatabase(context: Context): SchoolDatabase {
             val tempInstance = INSTANCE
             if (tempInstance != null) {
                 return tempInstance
@@ -47,12 +53,22 @@ abstract class SchoolDatabase : RoomDatabase() {
                         /*val synchroRequest = PeriodicWorkRequestBuilder<PopulateDbWorker>(30, TimeUnit.SECONDS)
                             .build()
                         WorkManager.getInstance(context!!).enqueue(synchroRequest)*/
-                        getDatabase(context).schoolDao().insertStudents(generateStudentsClassA())
-                        getDatabase(context).schoolDao().insertStudents(generateStudentsClassB())
-                        getDatabase(context).schoolDao().insertStudents(generateStudentsClassC())
-                        getDatabase(context).schoolDao().insertStudents(generateStudentsClassD())
-                        getDatabase(context).schoolDao().insertStudents(generateStudentsClassE())
-                        getDatabase(context).schoolDao().insertClassrooms(generateClassrooms())
+                        Executors.newSingleThreadExecutor().execute {
+                            INSTANCE?.let {
+                                getInstance(context).schoolDao()
+                                    .insertStudents(generateStudentsClassA())
+                                getInstance(context).schoolDao()
+                                    .insertStudents(generateStudentsClassB())
+                                getInstance(context).schoolDao()
+                                    .insertStudents(generateStudentsClassC())
+                                getInstance(context).schoolDao()
+                                    .insertStudents(generateStudentsClassD())
+                                getInstance(context).schoolDao()
+                                    .insertStudents(generateStudentsClassE())
+                                getInstance(context).schoolDao()
+                                    .insertClassrooms(generateClassrooms())
+                            }
+                        }
                     }
                 }).build()
                 INSTANCE = instance

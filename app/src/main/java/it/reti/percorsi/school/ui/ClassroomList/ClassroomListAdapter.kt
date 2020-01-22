@@ -10,7 +10,8 @@ import it.reti.percorsi.school.R
 import it.reti.percorsi.school.db.entities.Classroom
 
 class ClassroomListAdapter internal constructor(
-    context: Context
+    context: Context,
+    classrooms: List<Classroom>
 ) : RecyclerView.Adapter<ClassroomListAdapter.ClassroomViewholder>() {
 
     private val inflater: LayoutInflater = LayoutInflater.from(context)
