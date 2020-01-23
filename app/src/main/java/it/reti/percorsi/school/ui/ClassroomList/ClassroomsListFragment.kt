@@ -1,5 +1,6 @@
 package it.reti.percorsi.school.ui.ClassroomList
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -12,17 +13,15 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
 import it.reti.percorsi.school.R
+import it.reti.percorsi.school.db.entities.Classroom
 import kotlinx.android.synthetic.main.list_classroom_fragment.*
 
 class ClassroomsListFragment : Fragment() {
 
+    private var listener: OnListFragmentInteractionListener? = null
     companion object {
         fun newInstance() = ClassroomsListFragment()
     }
-
-/*    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-    }*/
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -38,13 +37,31 @@ class ClassroomsListFragment : Fragment() {
         rootView.findViewById<AppCompatImageButton>(R.id.products_search_btn).setOnClickListener {
             viewModel.getLocalClassrooms().observe(this, Observer {list ->
                 fragment_classroom_list_recycler.apply {
-                    adapter = ClassroomListAdapter(this@ClassroomsListFragment.context!!, list)
+                    adapter = ClassroomListAdapter(this@ClassroomsListFragment.context!!, list, listener)
                     layoutManager = LinearLayoutManager(this@ClassroomsListFragment.context)
                 }
             })
         }
 
         return rootView
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        if (context is OnListFragmentInteractionListener) {
+            listener = context
+        } else {
+            throw RuntimeException("$context must implement OnListFragmentInteractionListener")
+        }
+    }
+
+    override fun onDetach() {
+        super.onDetach()
+        listener = null
+    }
+
+    interface OnListFragmentInteractionListener {
+        fun onListFragmentInteraction(item: Classroom)
     }
 
    /* private lateinit var viewModel: ClassroomsListViewModel

@@ -10,4 +10,7 @@
     <string name="classroom_type_mathematics">Mathematics</string>
     <string name="classroom_type_astronomy">Astronomy</string>
     <string name="title_classroom_list">Lista classi</string>
+    <string name="student_icon_name">OO</string>
+    <string name="student_name">Davide Oggioni</string>
+    <string name="student_details">Visualizza dettagli</string>
 </resources>

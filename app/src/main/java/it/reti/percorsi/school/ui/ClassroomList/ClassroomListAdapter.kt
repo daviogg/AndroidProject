@@ -1,7 +1,6 @@
 package it.reti.percorsi.school.ui.ClassroomList
 
 import android.content.Context
-import android.graphics.drawable.Drawable
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,18 +10,24 @@ import androidx.recyclerview.widget.RecyclerView
 import it.reti.percorsi.school.R
 import it.reti.percorsi.school.db.entities.Classroom
 import it.reti.percorsi.school.db.entities.ClassroomType
-import kotlin.coroutines.coroutineContext
 
 class ClassroomListAdapter internal constructor(
     context: Context,
-    classroomsCtor: List<Classroom>
+    classroomsCtor: List<Classroom>,
+    private val listener: ClassroomsListFragment.OnListFragmentInteractionListener?
 ) : RecyclerView.Adapter<ClassroomListAdapter.ClassroomViewholder>() {
 
     private val inflater: LayoutInflater = LayoutInflater.from(context)
     private var classrooms = emptyList<Classroom>()
+    private val onClickListener: View.OnClickListener
 
     init {
         classrooms = classroomsCtor
+
+        onClickListener = View.OnClickListener { v ->
+            val item = v.tag as Classroom
+            listener?.onListFragmentInteraction(item)
+        }
     }
         inner class ClassroomViewholder(itemView: View) : RecyclerView.ViewHolder(itemView) {
             val classroomItemName: TextView = itemView.findViewById(R.id.class_name)
@@ -50,9 +55,6 @@ class ClassroomListAdapter internal constructor(
             ClassroomType.SCIENCE -> holder.classroomItemImage.setImageResource(R.drawable.ic_atom)
             ClassroomType.ART -> holder.classroomItemImage.setImageResource(R.drawable.ic_brush)
         }
-
-
-
     }
 
 
