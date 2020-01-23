@@ -1,2 +1,2 @@
-include ':app'
+include ':app', ':markerlibrary'
 rootProject.name='School'

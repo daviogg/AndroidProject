@@ -18,6 +18,8 @@ data class Student (
     @ColumnInfo(name = "classroomId") val classroomId: Int,
     @ColumnInfo(name = "first_name") val firstName: String?,
     @ColumnInfo(name = "last_name") val lastName: String?,
+    @ColumnInfo(name = "latitude") val latitude: Double,
+    @ColumnInfo(name = "longitude") val longitude: Double,
     @ColumnInfo(name = "votes") val votes: List<Int>)
 
 data class ClassroomWithStudents(

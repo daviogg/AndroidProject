@@ -19,7 +19,7 @@ import it.reti.percorsi.school.db.entities.Classroom
 import it.reti.percorsi.school.db.entities.Student
 import java.util.concurrent.Executors
 
-@Database(entities = [Classroom::class, Student::class], version = 1)
+@Database(entities = [Classroom::class, Student::class], version = 3)
 @TypeConverters(ClassroomConverter::class)
 abstract class SchoolDatabase : RoomDatabase() {
 
@@ -49,10 +49,6 @@ abstract class SchoolDatabase : RoomDatabase() {
                 ).addCallback(object : Callback() {
                     override fun onCreate(db: SupportSQLiteDatabase) {
                         super.onCreate(db)
-                        // moving to a new thread
-                        /*val synchroRequest = PeriodicWorkRequestBuilder<PopulateDbWorker>(30, TimeUnit.SECONDS)
-                            .build()
-                        WorkManager.getInstance(context!!).enqueue(synchroRequest)*/
                         Executors.newSingleThreadExecutor().execute {
                             INSTANCE?.let {
                                 getInstance(context).schoolDao()
@@ -70,7 +66,7 @@ abstract class SchoolDatabase : RoomDatabase() {
                             }
                         }
                     }
-                }).build()
+                }).fallbackToDestructiveMigration().build()
                 INSTANCE = instance
                 return instance
             }

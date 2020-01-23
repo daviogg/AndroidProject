@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="MarkerMapView">
+        <attr name="android:textColor" />
+        <attr name="mapStyle" format="enum" >
+            <enum name="normal" value="0"/>
+            <enum name="satellite" value="1" />
+            <enum name="hybrid" value="1" />
+        </attr>
+    </declare-styleable>
+
+</resources>
