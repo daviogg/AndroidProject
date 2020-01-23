@@ -10,5 +10,20 @@
         android:name="it.reti.percorsi.school.ui.ClassroomList.ClassroomsListFragment"
         android:label="@string/title_classroom_list"
         tools:layout="@layout/list_classroom_fragment">
+        <action
+            android:id="@+id/action_nav_classroom_list_to_student_list"
+            app:destination="@+id/nav_student_list" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/nav_student_list"
+        android:name="it.reti.percorsi.school.ui.StudentsList.StudentListFragment"
+        android:label="@string/title_student_list"
+        tools:layout="@layout/list_student_fragment">
+
+        <argument
+            android:name="classroom_id"
+            app:argType="integer"
+            android:defaultValue="1"/>
     </fragment>
 </navigation>

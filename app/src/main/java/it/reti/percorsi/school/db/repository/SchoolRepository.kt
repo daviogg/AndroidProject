@@ -17,6 +17,10 @@ class SchoolRepository(private val schoolDatabase: SchoolDatabase) {
         return schoolDatabase.schoolDao().getAllClassrooms()
     }
 
+    fun getAllStudents(classId: Int): LiveData<List<Student>>{
+        return schoolDatabase.schoolDao().getAllStudents(classId)
+    }
+
     fun insertClassrooms(classrooms: List<Classroom>): DisposableCompletableObserver {
         return schoolDatabase.schoolDao().insertClassrooms(
                 classrooms

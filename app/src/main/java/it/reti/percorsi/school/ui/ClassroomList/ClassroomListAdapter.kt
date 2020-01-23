@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import it.reti.percorsi.school.R
 import it.reti.percorsi.school.db.entities.Classroom
@@ -54,6 +55,11 @@ class ClassroomListAdapter internal constructor(
             ClassroomType.LITERATURE -> holder.classroomItemImage.setImageResource(R.drawable.ic_books)
             ClassroomType.SCIENCE -> holder.classroomItemImage.setImageResource(R.drawable.ic_atom)
             ClassroomType.ART -> holder.classroomItemImage.setImageResource(R.drawable.ic_brush)
+        }
+
+        with(holder.itemView) {
+            tag = current
+            setOnClickListener(onClickListener)
         }
     }
 

@@ -12,8 +12,8 @@ import it.reti.percorsi.school.db.entities.Student
 @Dao
 interface SchoolDao {
 
-    @Query("SELECT * FROM Student")
-    fun getAllStudents(): LiveData<List<Student>>
+    @Query("SELECT * FROM Student WHERE classroomId == :classId")
+    fun getAllStudents(classId: Int): LiveData<List<Student>>
 
     @Query("SELECT * FROM Classroom")
     fun getAllClassrooms(): LiveData<List<Classroom>>
