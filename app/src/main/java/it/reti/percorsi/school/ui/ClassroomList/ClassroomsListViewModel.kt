@@ -18,11 +18,10 @@ import java.util.concurrent.Executors
 
 class ClassroomsListViewModel(application: Activity) : ViewModel() {
     private val schoolRepository: SchoolRepository
-    public val allClassrooms : LiveData<List<Classroom>>
-    var schoolDatabase : SchoolDatabase
+    private val allClassrooms : LiveData<List<Classroom>>
 
     init {
-        schoolDatabase = SchoolDatabase.buildDatabase(application)
+        val schoolDatabase = SchoolDatabase.buildDatabase(application)
         schoolRepository = SchoolRepository(schoolDatabase)
         populateDatabaseIfNull()
         allClassrooms = schoolRepository.getAllClassrooms()
@@ -33,19 +32,19 @@ class ClassroomsListViewModel(application: Activity) : ViewModel() {
     }
 
     fun populateDatabaseIfNull(){
-            SchoolDatabase?.let {
+            SchoolDatabase.let {
                 schoolRepository
-                    .insertStudents(PopulateDb.generateStudentsClassA())
+                    .insertStudents(PopulateDb.generateStudentsClassA(schoolRepository))
                 schoolRepository
-                    .insertStudents(PopulateDb.generateStudentsClassB())
+                    .insertStudents(PopulateDb.generateStudentsClassB(schoolRepository))
                 schoolRepository
-                    .insertStudents(PopulateDb.generateStudentsClassC())
+                    .insertStudents(PopulateDb.generateStudentsClassC(schoolRepository))
                 schoolRepository
-                    .insertStudents(PopulateDb.generateStudentsClassD())
+                    .insertStudents(PopulateDb.generateStudentsClassD(schoolRepository))
                 schoolRepository
-                    .insertStudents(PopulateDb.generateStudentsClassE())
+                    .insertStudents(PopulateDb.generateStudentsClassE(schoolRepository))
                 schoolRepository
-                    .insertClassrooms(PopulateDb.generateClassrooms())
+                    .insertClassrooms(PopulateDb.generateClassrooms(schoolRepository))
             }
     }
 

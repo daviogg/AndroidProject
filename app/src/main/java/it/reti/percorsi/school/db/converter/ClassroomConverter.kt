@@ -14,8 +14,7 @@ class ClassroomConverter {
     @TypeConverter
     fun jsonToList(value: String): List<Int>? {
         val objects = Gson().fromJson(value, Array<Int>::class.java) as Array<Int>
-        val list = objects.toList()
-        return list
+        return objects.toList()
     }
 
     @TypeConverter

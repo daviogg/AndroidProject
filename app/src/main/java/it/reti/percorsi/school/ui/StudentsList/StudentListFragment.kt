@@ -11,10 +11,11 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import it.reti.percorsi.school.R
 import it.reti.percorsi.school.db.entities.Classroom
+import it.reti.percorsi.school.db.entities.Student
 import kotlinx.android.synthetic.main.list_student_fragment.*
 
 class StudentListFragment : Fragment(){
-    private var listener: StudentListFragment.OnListFragmentInteractionListener? = null
+    private var listener: OnListFragmentInteractionListener? = null
     companion object {
         fun newInstance() = StudentListFragment()
     }
@@ -57,6 +58,6 @@ class StudentListFragment : Fragment(){
     }
 
     interface OnListFragmentInteractionListener {
-        fun onListFragmentInteraction(item: Classroom)
+        fun onListFragmentInteraction(item: Student)
     }
 }

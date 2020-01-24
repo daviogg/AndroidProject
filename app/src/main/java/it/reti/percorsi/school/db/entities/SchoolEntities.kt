@@ -22,6 +22,14 @@ data class Student (
     @ColumnInfo(name = "longitude") val longitude: Double,
     @ColumnInfo(name = "votes") val votes: List<Int>)
 
+
+@Entity
+data class Vote(
+    @PrimaryKey(autoGenerate = true) val uid: Int = 0,
+    @ColumnInfo(name = "value") val value: Int,
+    @ColumnInfo(name = "studentId") val studentId: Int
+)
+
 data class ClassroomWithStudents(
     @Embedded val classroom: Classroom,
     @Relation(
@@ -29,6 +37,15 @@ data class ClassroomWithStudents(
         entityColumn = "classroomId"
     )
     val students: List<Student>
+)
+
+data class StudentsWithVotes(
+    @Embedded val student: Student,
+    @Relation(
+        parentColumn = "uid",
+        entityColumn = "studentId"
+    )
+    val votes: List<Vote>
 )
 
 /*

@@ -17,9 +17,10 @@ import it.reti.percorsi.school.db.converter.ClassroomConverter
 import it.reti.percorsi.school.db.dao.SchoolDao
 import it.reti.percorsi.school.db.entities.Classroom
 import it.reti.percorsi.school.db.entities.Student
+import it.reti.percorsi.school.db.entities.Vote
 import java.util.concurrent.Executors
 
-@Database(entities = [Classroom::class, Student::class], version = 3)
+@Database(entities = [Classroom::class, Student::class, Vote::class], version = 4)
 @TypeConverters(ClassroomConverter::class)
 abstract class SchoolDatabase : RoomDatabase() {
 
@@ -51,7 +52,7 @@ abstract class SchoolDatabase : RoomDatabase() {
                         super.onCreate(db)
                         Executors.newSingleThreadExecutor().execute {
                             INSTANCE?.let {
-                                getInstance(context).schoolDao()
+                               /* getInstance(context).schoolDao()
                                     .insertStudents(generateStudentsClassA())
                                 getInstance(context).schoolDao()
                                     .insertStudents(generateStudentsClassB())
@@ -62,7 +63,7 @@ abstract class SchoolDatabase : RoomDatabase() {
                                 getInstance(context).schoolDao()
                                     .insertStudents(generateStudentsClassE())
                                 getInstance(context).schoolDao()
-                                    .insertClassrooms(generateClassrooms())
+                                    .insertClassrooms(generateClassrooms())*/
                             }
                         }
                     }

@@ -11,11 +11,10 @@ import it.reti.percorsi.school.db.repository.SchoolRepository
 class StudentListViewModel(activity: Activity, classroomId : Int) :ViewModel(){
 
     private val schoolRepository: SchoolRepository
-    public val allStudents : LiveData<List<Student>>
-    var schoolDatabase : SchoolDatabase
+    val allStudents : LiveData<List<Student>>
 
     init {
-        schoolDatabase = SchoolDatabase.buildDatabase(activity)
+        val schoolDatabase = SchoolDatabase.buildDatabase(activity)
         schoolRepository = SchoolRepository(schoolDatabase)
         allStudents = schoolRepository.getAllStudents(classroomId)
     }

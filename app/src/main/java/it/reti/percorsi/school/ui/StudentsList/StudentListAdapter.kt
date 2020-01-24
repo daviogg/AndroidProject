@@ -25,7 +25,7 @@ class StudentListAdapter internal constructor(
         students = studentsCtor
 
         onClickListener = View.OnClickListener { v ->
-            val item = v.tag as Classroom
+            val item = v.tag as Student
             listener?.onListFragmentInteraction(item)
         }
     }
@@ -50,6 +50,10 @@ class StudentListAdapter internal constructor(
         holder.studentInitials.text = initials
         holder.studentItemImage.setColorFilter(R.color.design_default_color_primary)
 
+        with(holder.itemView) {
+            tag = current
+            setOnClickListener(onClickListener)
+        }
     }
 
     override fun getItemCount() = students.size

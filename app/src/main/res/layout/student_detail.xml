@@ -1,16 +1,37 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+
+        <variable
+            name="student"
+            type="it.reti.percorsi.school.db.entities.Student" />
+
+        <variable
+            name="vm"
+            type="it.reti.percorsi.school.ui.studentDetail.StudentDetailViewModel" />
+        
+        <variable
+            name="media"
+            type="Double" />
+
+        <!-- <import type="it.reti.percorsi.pokedex.utils.BindingHelpersKt" />-->
+
+        <import type="android.view.View" />
+    </data>
+
+    <LinearLayout
     android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center_horizontal">
 
-    <it.reti.percorsi.mylibrary.MarkerMapView
+
+    <!--<it.reti.percorsi.mylibrary.MarkerMapView
         android:id="@+id/activity_main_marker_map_view"
         android:layout_width="match_parent"
         android:layout_height="400dp"
-        android:textColor="@color/colorAccent" />
+        android:textColor="@color/colorAccent" />-->
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -36,7 +57,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@{BindingHelpersKt.getPokemonType(pokemon.typeList)}"
+                android:text="@{student.firstName}"
                 android:textSize="20sp"
                 tools:text="nome" />
 
@@ -59,7 +80,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@{BindingHelpersKt.getPokemonType(pokemon.typeList)}"
+                android:text="@{student.lastName}"
                 android:textSize="20sp"
                 tools:text="cognome" />
 
@@ -82,7 +103,7 @@
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@{BindingHelpersKt.getPokemonType(pokemon.typeList)}"
+                android:text="Indirizzo"
                 android:textSize="20sp"
                 tools:text="Indirizzo" />
         </LinearLayout>
@@ -95,7 +116,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Media voti"
+                android:text="@{Double.toString(media)}"
                 android:textSize="95sp"
                 tools:text="8.6" />
         </LinearLayout>
@@ -104,3 +125,4 @@
 
 
 </LinearLayout>
+</layout>
