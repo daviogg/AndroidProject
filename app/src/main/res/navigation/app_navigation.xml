@@ -21,9 +21,25 @@
         android:label="@string/title_student_list"
         tools:layout="@layout/list_student_fragment">
 
+        <action
+            android:id="@+id/action_nav_student_list_to_student_detail"
+            app:destination="@+id/nav_student_detail" />
+
         <argument
             android:name="classroom_id"
             app:argType="integer"
             android:defaultValue="1"/>
+    </fragment>
+
+    <fragment
+    android:id="@+id/nav_student_detail"
+    android:name="it.reti.percorsi.school.ui.studentDetail.StudentDetailFragment"
+    android:label="@string/title_student_list"
+    tools:layout="@layout/student_detail">
+
+    <argument
+        android:name="student_id"
+        app:argType="integer"
+        android:defaultValue="1"/>
     </fragment>
 </navigation>
