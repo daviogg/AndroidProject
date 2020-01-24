@@ -5,7 +5,7 @@ import com.google.android.gms.maps.model.LatLng
 import com.google.android.gms.maps.model.Marker
 import com.google.android.gms.maps.model.MarkerOptions
 
-abstract class TravelDelegateBase : GoogleMap.OnMarkerClickListener {
+abstract class TravelDelegateBase : GoogleMap.OnMarkerClickListener{
 
     override fun onMarkerClick(marker: Marker): Boolean {
         return false
