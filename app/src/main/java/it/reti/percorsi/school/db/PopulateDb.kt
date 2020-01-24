@@ -30,7 +30,6 @@ object PopulateDb {
 
     fun generateStudentsClassA(schoolRepository: SchoolRepository) : List<Student>{
 
-        val galilei = Student(0,1, "Galileo", "Galilei",45.889633, 8.702064, generateRandomVotes(0, schoolRepository))
         val newton  = Student(1,1,  "Isaac", "Newton",45.889633, 8.702064, generateRandomVotes(1, schoolRepository))
         val darwin = Student(2, 1, "Charles", "Darwin",45.889633, 8.702064, generateRandomVotes(2, schoolRepository))
         val copernico = Student(3,1,  "Nicolo", "Copernico",45.889633, 8.702064, generateRandomVotes(3, schoolRepository))
@@ -39,7 +38,7 @@ object PopulateDb {
         val hack = Student(6, 1, "Margherita", "Hack",45.889633, 8.702064, generateRandomVotes(6, schoolRepository))
         val pasteur = Student(7, 1, "Louis", "Pasteur",45.889633, 8.702064, generateRandomVotes(7,schoolRepository))
 
-        return listOf(galilei, newton, darwin, copernico, golgi, fermi, hack, pasteur)
+        return listOf(newton, darwin, copernico, golgi, fermi, hack, pasteur)
     }
 
     fun generateStudentsClassB(schoolRepository: SchoolRepository) : List<Student>{

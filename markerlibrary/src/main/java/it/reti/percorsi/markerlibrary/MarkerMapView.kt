@@ -5,7 +5,6 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.FrameLayout
 import android.widget.LinearLayout
-import android.widget.TextView
 import androidx.fragment.app.FragmentActivity
 import com.google.android.gms.maps.CameraUpdateFactory
 import com.google.android.gms.maps.GoogleMap
@@ -20,14 +19,6 @@ class MarkerMapView: LinearLayout, OnMapReadyCallback {
     private var mMap: GoogleMap? = null
     private var mMapType: Int = NORMAL
 
-    private var mTextColor: Int = 0
-    var textColor: Int
-        get() = mTextColor
-        set(value) {
-            mTextColor = value
-            update()
-        }
-    private lateinit var mText: TextView
     private lateinit var mMapContainer: FrameLayout
     var travelDelegate: TravelDelegateBase? = null
 
@@ -45,8 +36,6 @@ class MarkerMapView: LinearLayout, OnMapReadyCallback {
     ) {
         init(context)
         val typedArray = context.obtainStyledAttributes(attrs, R.styleable.MarkerMapView)
-        val defaultColor = context.getColor(android.R.color.holo_red_dark)
-        mTextColor = typedArray.getColor(R.styleable.MarkerMapView_android_textColor, defaultColor)
         mMapType = typedArray.getInt(R.styleable.MarkerMapView_mapStyle, NORMAL)
 
         typedArray.recycle()
@@ -57,13 +46,11 @@ class MarkerMapView: LinearLayout, OnMapReadyCallback {
     private fun init(context: Context) {
         val inflater = context.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         inflater.inflate(R.layout.marker_map_view, this)
-        mText = findViewById(R.id.marker_map_view_txt)
         mMapContainer = findViewById(R.id.marker_map_view_map_container)
         buildMapFragment(context)
     }
 
     private fun update() {
-        mText.setTextColor(mTextColor)
         mMap?.mapType =
             if (mMapType == HYBRID) GoogleMap.MAP_TYPE_HYBRID else if (mMapType == SATELLITE) GoogleMap.MAP_TYPE_SATELLITE else GoogleMap.MAP_TYPE_NORMAL
     }
@@ -76,10 +63,6 @@ class MarkerMapView: LinearLayout, OnMapReadyCallback {
                 .firstOrNull()
                 ?.getMapAsync(this)
         }
-    }
-
-    fun setText(text: String) {
-        mText.text = text
     }
 
     private fun buildMapFragment(context: Context) {

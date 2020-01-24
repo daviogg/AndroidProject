@@ -37,6 +37,10 @@
     android:label="@string/title_student_list"
     tools:layout="@layout/student_detail">
 
+        <action
+            android:id="@+id/action_nav_detail_to_student_list"
+            app:destination="@+id/nav_student_list" />
+
     <argument
         android:name="student_id"
         app:argType="integer"

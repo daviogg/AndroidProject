@@ -6,21 +6,11 @@
     android:layout_height="match_parent"
     tools:parentTag="android.widget.LinearLayout">
 
-    <!-- 2 -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <!-- 1 -->
-        <TextView
-            android:id="@+id/marker_map_view_txt"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:gravity="center_horizontal"
-            tools:text="TESTO DI PROVA PER VEDERE COSA SUCCEDE" />
-
-        <!-- 2 -->
         <FrameLayout
             android:id="@+id/marker_map_view_map_container"
             android:layout_width="match_parent"

@@ -15,12 +15,12 @@ class MainActivity : AppCompatActivity(), ClassroomsListFragment.OnListFragmentI
 
 
     override fun onListFragmentInteraction(item: Classroom) {
-        var bundle = bundleOf("classroom_id" to item.uid)
+        val bundle = bundleOf("classroom_id" to item.uid)
         findNavController(R.id.nav_host_fragment).navigate(R.id.action_nav_classroom_list_to_student_list, bundle)
     }
 
     override fun onListFragmentInteraction(item: Student) {
-        var bundle = bundleOf("student_id" to item.uid)
+        val bundle = bundleOf("student_id" to item.uid)
         findNavController(R.id.nav_host_fragment).navigate(R.id.action_nav_student_list_to_student_detail, bundle)
     }
 
@@ -30,5 +30,6 @@ class MainActivity : AppCompatActivity(), ClassroomsListFragment.OnListFragmentI
         setContentView(R.layout.activity_main)
 
         val navController = findNavController(R.id.nav_host_fragment)
+
     }
 }

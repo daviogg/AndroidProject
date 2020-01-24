@@ -15,7 +15,7 @@ class StudentDetailViewModel(activity: Activity, studentId : Int) : ViewModel(){
     val student : LiveData<Student>
 
     init {
-        var schoolDatabase = SchoolDatabase.buildDatabase(activity)
+        val schoolDatabase = SchoolDatabase.buildDatabase(activity)
         schoolRepository = SchoolRepository(schoolDatabase)
         student = schoolRepository.getStudent(studentId)
     }

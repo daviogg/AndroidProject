@@ -15,8 +15,6 @@
             name="media"
             type="Double" />
 
-        <!-- <import type="it.reti.percorsi.pokedex.utils.BindingHelpersKt" />-->
-
         <import type="android.view.View" />
     </data>
 
@@ -27,11 +25,11 @@
     android:gravity="center_horizontal">
 
 
-    <!--<it.reti.percorsi.mylibrary.MarkerMapView
+    <it.reti.percorsi.markerlibrary.MarkerMapView
         android:id="@+id/activity_main_marker_map_view"
         android:layout_width="match_parent"
-        android:layout_height="400dp"
-        android:textColor="@color/colorAccent" />-->
+        android:layout_height="350dp"
+        android:textColor="@color/colorAccent" />
 
     <LinearLayout
         android:layout_width="match_parent"
