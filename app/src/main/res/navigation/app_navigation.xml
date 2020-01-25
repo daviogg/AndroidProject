@@ -23,7 +23,9 @@
 
         <action
             android:id="@+id/action_nav_student_list_to_student_detail"
-            app:destination="@+id/nav_student_detail" />
+            app:destination="@+id/nav_student_detail"
+            app:popExitAnim="@anim/fragment_fade_exit"
+            app:popUpTo="@+id/nav_student_list" />
 
         <argument
             android:name="classroom_id"
@@ -34,12 +36,15 @@
     <fragment
     android:id="@+id/nav_student_detail"
     android:name="it.reti.percorsi.school.ui.studentDetail.StudentDetailFragment"
-    android:label="@string/title_student_list"
-    tools:layout="@layout/student_detail">
+    android:label="@string/student_detail"
+    tools:layout="@layout/student_detail"
+        app:launchSingleTop="true"
+        app:popUpTo="@+id/nav_student_list"
+        app:popUpToInclusive="true">
 
-        <action
+        <!--<action
             android:id="@+id/action_nav_detail_to_student_list"
-            app:destination="@+id/nav_student_list" />
+            app:destination="@+id/nav_student_list" />-->
 
     <argument
         android:name="student_id"

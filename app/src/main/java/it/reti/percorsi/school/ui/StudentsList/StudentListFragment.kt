@@ -10,7 +10,6 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import it.reti.percorsi.school.R
-import it.reti.percorsi.school.db.entities.Classroom
 import it.reti.percorsi.school.db.entities.Student
 import kotlinx.android.synthetic.main.list_student_fragment.*
 

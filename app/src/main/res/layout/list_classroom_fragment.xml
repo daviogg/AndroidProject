@@ -6,27 +6,6 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/item_horizontal_margin"
-        android:layout_marginEnd="@dimen/item_horizontal_margin"
-        android:orientation="horizontal">
-
-        <androidx.appcompat.widget.AppCompatEditText
-            android:id="@+id/products_search_box"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:hint="@string/search_classroom" />
-
-        <ImageButton
-            android:id="@+id/products_search_btn"
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:contentDescription="@string/cd_search_classroom"
-            app:srcCompat="@drawable/ic_search" />
-    </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/fragment_classroom_list_recycler"
@@ -37,5 +16,6 @@
         android:layout_marginRight="@dimen/activity_horizontal_margin"
         android:layout_marginTop="@dimen/activity_vertical_margin"
         app:layoutManager="LinearLayoutManager"
-        tools:listitem="@layout/classroom_view_item" />
+        tools:listitem="@layout/classroom_view_item"
+        />
 </LinearLayout>

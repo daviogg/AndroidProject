@@ -1,7 +1,6 @@
 package it.reti.percorsi.school
 
 import android.os.Bundle
-import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.os.bundleOf
 import androidx.navigation.findNavController
@@ -11,7 +10,7 @@ import it.reti.percorsi.school.ui.ClassroomList.ClassroomsListFragment
 import it.reti.percorsi.school.ui.StudentsList.StudentListFragment
 
 
-class MainActivity : AppCompatActivity(), ClassroomsListFragment.OnListFragmentInteractionListener, StudentListFragment.OnListFragmentInteractionListener {
+class MainActivity : AppCompatActivity(), ClassroomsListFragment.OnListFragmentInteractionListener, StudentListFragment.OnListFragmentInteractionListener{
 
 
     override fun onListFragmentInteraction(item: Classroom) {
@@ -25,11 +24,11 @@ class MainActivity : AppCompatActivity(), ClassroomsListFragment.OnListFragmentI
     }
 
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         val navController = findNavController(R.id.nav_host_fragment)
-
     }
 }

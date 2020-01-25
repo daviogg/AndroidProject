@@ -1,5 +1,6 @@
 package it.reti.percorsi.school.ui.studentDetail
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -14,16 +15,18 @@ import it.reti.percorsi.markerlibrary.TravelDelegateBase
 import it.reti.percorsi.school.R
 import it.reti.percorsi.school.databinding.StudentDetailBinding
 import it.reti.percorsi.school.db.entities.Vote
-import kotlinx.android.synthetic.main.student_detail.*
 import com.google.android.gms.maps.model.Marker
+import it.reti.percorsi.school.db.entities.Student
 
 class StudentDetailFragment: Fragment() {
     private var markerMapView: MarkerMapView? = null
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val rootView: View =  inflater.inflate(R.layout.list_student_fragment, container, false)
+
+        val rootView: View =  inflater.inflate(R.layout.student_detail, container, false)
         val studentId = arguments?.getInt("student_id")
         var average : Double
 
@@ -33,8 +36,7 @@ class StudentDetailFragment: Fragment() {
             StudentDetailViewModel.StudentDetailViewModelFactory(requireActivity(), studentId?:1)
         ).get(StudentDetailViewModel::class.java)
 
-        markerMapView = this.activity_main_marker_map_view
-        markerMapView?.travelDelegate = MyTravelDelegate()
+
 
         viewModel.student.observe(this, Observer {
             val contentView = DataBindingUtil.setContentView<StudentDetailBinding>(
@@ -46,12 +48,25 @@ class StudentDetailFragment: Fragment() {
                 contentView.media = average
             })
 
+
+
             contentView.student = it
             contentView.vm = viewModel
 
+            markerMapView = contentView.studentDetailMarkerMapView
+            markerMapView?.travelDelegate = MyTravelDelegate()
+
+            contentView.addressSearchBtn.setOnClickListener{ markerMapView?.syncMapWithDelegate(this.context!!) }
 
         })
+
+
         return rootView
+    }
+
+
+    interface OnListFragmentInteractionListener {
+        fun onListFragmentInteraction(item: Student)
     }
 
     private inner class MyTravelDelegate: TravelDelegateBase() {
@@ -83,4 +98,7 @@ class StudentDetailFragment: Fragment() {
 
         return (total/numberOfVotes).toDouble()
     }
+
+
+
 }

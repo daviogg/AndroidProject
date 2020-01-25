@@ -55,9 +55,9 @@ class MarkerMapView: LinearLayout, OnMapReadyCallback {
             if (mMapType == HYBRID) GoogleMap.MAP_TYPE_HYBRID else if (mMapType == SATELLITE) GoogleMap.MAP_TYPE_SATELLITE else GoogleMap.MAP_TYPE_NORMAL
     }
 
-    fun syncMapWithDelegate() {
+    fun syncMapWithDelegate(context: Context) {
         if (context is FragmentActivity) {
-            val activity = context as FragmentActivity
+            val activity = context
             activity.supportFragmentManager.fragments
                 .filterIsInstance(SupportMapFragment::class.java)
                 .firstOrNull()
@@ -65,7 +65,7 @@ class MarkerMapView: LinearLayout, OnMapReadyCallback {
         }
     }
 
-    private fun buildMapFragment(context: Context) {
+     private fun buildMapFragment(context: Context) {
         if (context is FragmentActivity) {
             val mapFragment: SupportMapFragment = SupportMapFragment.newInstance()
             context

@@ -7,6 +7,7 @@ apply plugin: 'kotlin-android-extensions'
 android {
     compileSdkVersion 28
     buildToolsVersion "29.0.0"
+
     defaultConfig {
         applicationId "it.reti.percorsi.school"
         minSdkVersion 24
@@ -60,8 +61,8 @@ dependencies {
     implementation "androidx.room:room-rxjava2:$room_version"
     implementation 'androidx.recyclerview:recyclerview:1.1.0'
     implementation "androidx.work:work-runtime-ktx:2.2.0"
-    implementation 'androidx.navigation:navigation-fragment-ktx:2.1.0'
-    implementation 'androidx.navigation:navigation-ui-ktx:2.1.0'
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.2.0'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.2.0'
     kapt "androidx.room:room-compiler:$room_version"
 
     implementation "io.reactivex.rxjava2:rxandroid:$rx_android"

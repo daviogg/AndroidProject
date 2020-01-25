@@ -1,14 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="app_name">SchoolProject</string>
-    <string name="search_classroom">Search classroom…</string>
-    <string name="cd_search_classroom">Search classroom</string>
-    <string name="classroom_type_it">Computer Science</string>
-    <string name="classroom_type_art">Art</string>
     <string name="classroom_type_science">Science</string>
-    <string name="classroom_type_literature">Literature</string>
-    <string name="classroom_type_mathematics">Mathematics</string>
-    <string name="classroom_type_astronomy">Astronomy</string>
     <string name="title_classroom_list">Lista classi</string>
     <string name="title_student_list">Lista studenti</string>
     <string name="student_detail">Dettaglio studente</string>

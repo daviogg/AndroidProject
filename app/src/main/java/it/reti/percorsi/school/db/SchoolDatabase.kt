@@ -20,7 +20,7 @@ import it.reti.percorsi.school.db.entities.Student
 import it.reti.percorsi.school.db.entities.Vote
 import java.util.concurrent.Executors
 
-@Database(entities = [Classroom::class, Student::class, Vote::class], version = 5)
+@Database(entities = [Classroom::class, Student::class, Vote::class], version = 7)
 @TypeConverters(ClassroomConverter::class)
 abstract class SchoolDatabase : RoomDatabase() {
 
