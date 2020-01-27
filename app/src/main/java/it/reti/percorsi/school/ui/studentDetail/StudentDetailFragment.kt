@@ -26,7 +26,7 @@ class StudentDetailFragment: Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        val rootView: View =  inflater.inflate(R.layout.student_detail, container, false)
+       /* val rootView: View =  inflater.inflate(R.layout.student_detail, container, false)*/
         val studentId = arguments?.getInt("student_id")
         var average : Double
 
@@ -37,12 +37,15 @@ class StudentDetailFragment: Fragment() {
         ).get(StudentDetailViewModel::class.java)
 
 
+        val contentView = DataBindingUtil.inflate<StudentDetailBinding>(layoutInflater, R.layout.student_detail, container, false)
+
+       /* val contentView = DataBindingUtil.setContentView<StudentDetailBinding>(
+            requireActivity(),
+            R.layout.student_detail
+        )*/
 
         viewModel.student.observe(this, Observer {
-            val contentView = DataBindingUtil.setContentView<StudentDetailBinding>(
-                requireActivity(),
-                R.layout.student_detail
-            )
+
             viewModel.getVotes(studentId?:1).observe(this, Observer { voteList ->
                 average = calculateAverage(voteList)
                 contentView.media = average
@@ -61,7 +64,7 @@ class StudentDetailFragment: Fragment() {
         })
 
 
-        return rootView
+        return contentView.root
     }
 
 
